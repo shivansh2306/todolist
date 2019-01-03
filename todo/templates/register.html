@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>New User Registration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Bree+Serif|Charm|Cinzel|Courgette|Exo+2|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  var check = function() {
+    if (document.getElementById('inputPass').value ==
+      document.getElementById('inputPass1').value) {
+      document.getElementById('message').style.color = 'green';
+      document.getElementById('message').innerHTML = 'Password Match';
+      callfunction();
+    } else {
+      document.getElementById('message').style.color = 'red';
+      document.getElementById('message').innerHTML = 'Password Mismatch';
+      document.getElementById('submit').disabled=true;
+    }
+  }
+function callfunction()
+{
+     var textBox = document.getElementById("inputPass");
+       var textLength = textBox.value.length;
+
+         if(textBox.value=='' || textLength<8)
+         {
+          document.getElementById('submit').disabled=true;
+          document.getElementById('message').style.color = 'red';
+          document.getElementById('message').innerHTML = 'Password less than 8 characters';
+         }
+         else{
+           document.getElementById('submit').disabled=false;
+         }
+}
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 offset-sm-4">
+        <h1 style="font-family:'Exo 2',sans-serif;color:blue">New User Registration</h1>
+      </div>
+    </div>
+  </div>
+<div class="container">
+  <div class="row">
+    <div class="alert alert-warning" role="alert">
+      <strong>Warning!</strong> Please fill the correct information
+    </div>
+  </div>
+<div class="row">
+    <form action="/register" method="POST">
+    <div class="form-group row">
+      <label for="inputUser" class="col-sm-5 col-form-label">Username</label>
+      <div class="col-sm-7">
+        <input class="form-control" id="inputUser" name="username" placeholder="Username" type="text">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-5 col-form-label">Email</label>
+      <div class="col-sm-7">
+        <input class="form-control" id="inputEmail" name="email" placeholder="Email" type="email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPass" class="col-sm-5 col-form-label">Password</label>
+      <div class="col-sm-7">
+        <input class="form-control" id="inputPass" name="password"  onkeyup='check();' placeholder="Password" type="password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPass1" class="col-sm-5 col-form-label">Confirm Password</label>
+      <div class="col-sm-7">
+        <input class="form-control" id="inputPass1" name="pass1" onkeyup='check();' placeholder="Confirm Password" type="password">
+      </div>
+    </div>
+    <p id="message"></p>
+    {{ form.hidden_tag() }}
+    <div class="form-group row">
+      <div class="col-sm-10 offset-sm-0">
+        <button type="submit" class="btn btn-primary" id="submit">Register</button>
+      </div>
+    </div>
+    </form>
+  </div>
+  <div class="row">
+    <a href="/login"><button class="btn btn-success">Login Now</button></a>
+  </div>
+</div>
+</body>
+
+</html>
